@@ -56,6 +56,43 @@
         color: #666;
       }
 
+      /*
+       这段代码是一个CSS媒体查询（Media Query），用于针对特定的设备或浏览器窗口尺寸（宽度）应用样式规则。
+       让我们详细解释每个部分的含义：
+
+          @media (max-width: 600px)
+             这是一个媒体查询，它指定了当浏览器窗口或设备的最大宽度为600像素或更小时，
+             应应用其中的样式规则。这通常用于为小屏幕设备（如手机）优化布局和样式。
+
+          样式规则
+
+         .ceBian
+            display: none;：当屏幕宽度小于或等于600px时，.ceBian类的元素将不会显示（即它们将被隐藏）。
+
+         .neiRong
+            flex-direction: column;：当屏幕宽度小于或等于600px时，.neiRong类的元素（很可能是一个Flex容器）的
+                                     Flex子项将从默认的row方向（水平排列）变为column方向（垂直排列）。
+
+         .shuJuQu
+            flex-direction: column;：与.neiRong类似，
+                                     .shuJuQu类的Flex容器（如果存在）的子项也将从水平排列变为垂直排列。
+
+         .youQu
+            margin-left: 8px;：当屏幕宽度小于或等于600px时，
+                               .youQu类的元素将有一个8像素的左外边距。
+         .shuJu
+            margin: 0 0 8px;：.shuJu类的元素将具有顶部和底部外边距为0，
+                              右左边距由上下文或继承确定（但在这里明确设置了左侧为默认值），以及底部外边距为8像素。
+
+            flex: auto;：这通常用于Flex容器中的子项。flex: auto;是flex-grow: 1; flex-shrink: 1; flex-basis: auto;的简写，
+                         它意味着这个元素会尽量填充其父元素的可用空间（在flex-direction指定的方向上），但也会根据需要进行收缩或增长。
+
+         总结
+         
+            这段代码的主要目的是为小于或等于600px宽度的屏幕优化布局。它隐藏了.ceBian元素，
+            更改了.neiRong和.shuJuQu元素的Flex子项排列方向，调整了.youQu的左外边距，
+            并设置了.shuJu的外边距和Flex属性。
+       */
       @media (max-width: 600px) {
         .ceBian {
           display: none;

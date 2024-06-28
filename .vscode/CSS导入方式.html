@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS导入方式</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <!-- 
+
+      1.内联样式       (直接放在元素标签中，style属性,即:style="")
+      2.内部样式表    （html的head文件中的<style></style>） 
+      3.外部样式表    （css样式单独放在一个文件中，通过<link>导入）
+      优先级 : 1 > 2 > 3
+
+       -->
+    <style>
+      p {
+        color: blue;
+        font-size: 26px;
+      }
+      h2 {
+        color: coral;
+      }
+    </style>
+  </head>
+  <body>
+    <p>这是一个应用了css样式的文本</p>
+    <h1 style="color: green">一级标题标签,内联样式</h1>
+    <h2>二级标题标签，内部样式</h2>
+    <h3>三级标题标签，外部样式</h3>
+  </body>
+</html>

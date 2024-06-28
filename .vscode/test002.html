@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>表单</title>
+  </head>
+  <body>
+    <!-- action的属性值为 ：URL（即提交到何处） “ # ”为不跳转，占位的作用  -->
+    <form action="">
+      <label for="username">用户名:</label>
+      <input type="text" id="username" placeholder="请输入用户名" /><br /><br />
+      <label for="pwd">密码:</label>
+      <input type="password" id="pwd" placeholder="请输入密码" /><br /><br />
+      <!-- <input type="password" id="pwd" value="请输入内容" /><br /><br /> -->
+
+      <!-- for属性可以将label标签绑定到input元素 一般与其id对应 -->
+
+      <!-- 单选 -->
+      <label>性别</label>
+      <input type="radio" name="gender" />男
+      <input type="radio" name="gender" />女
+      <input type="radio" name="gender" />其他<br /><br />
+
+      <!-- 多选 -->
+      <label>爱好:</label>
+      <input type="checkbox" name="hobby" />唱歌
+      <input type="checkbox" name="hobby" />跳舞
+      <input type="checkbox" name="hobby" />RAP
+      <input type="checkbox" name="hobby" />篮球<br /><br />
+
+      <!-- 提交 -->
+      <input type="submit" value="上传" />
+    </form>
+  </body>
+</html>
