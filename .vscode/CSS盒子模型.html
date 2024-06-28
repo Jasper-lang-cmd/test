@@ -7,10 +7,31 @@
     <style>
       .demo {
         background-color: aqua;
+        display: inline-block;
+        border: 5px solid yellowgreen;
+        /* padding 内边距 */
+        padding: 50px;
+        /* margin 外边距 */
+        margin: 40px;
+      }
+      .border-demo {
+        background-color: yellow;
+        width: 300px;
+        height: 200px;
+        border-style: solid;
+        /* border-style: solid dashed dotted double; */
+        /* 上 右 下 左 ：顺时针 */
+        /* border-width: 10px 0 20px 40px; */
+        border-width: 10px;
+        border-color: blueviolet;
+
+        /*只针对左边框  */
+        /* border-left: 5px solid yellowgreen; */
       }
     </style>
   </head>
   <body>
     <div class="demo">玉墨良</div>
+    <div class="border-demo">这是一个边框示例</div>
   </body>
 </html>
