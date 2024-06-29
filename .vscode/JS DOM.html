@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript DOM</title>
+  </head>
+  <body>
+    <div id="box1">这是一个ID选择器标签</div>
+    <div class="box2">这是一个类选择器标签</div>
+    <div>普通的div标签</div>
+
+    <button>点击按钮</button>
+
+    <script>
+      // 获取并打印节点
+      // 获取的是唯一值（ID选择器对应唯一元素）
+      var elemnet_id = document.getElementById("box1");
+      console.log(elemnet_id);
+
+      // 获取的是数组 （class选择器对应一至多个元素，故为数组）
+      // [0] -> 通过索引定位数组的第一个值
+      var elemnet_class = document.getElementsByClassName("box2")[0];
+      console.log(elemnet_class);
+
+      // 通过标签名获取
+      var elemnet_tag = document.getElementsByTagName("div")[2];
+      console.log(elemnet_tag);
+
+      // 修改文本内容 （innerHTML 并非一个函数，而是一个属性）
+      //   elemnet_id.innerHTML = "修改ID选择器标签文本的内容";
+      //   elemnet_class.innerText = "修改类选择器标签的文本";
+
+      // innerHTML 不仅会返回一个纯文本，还会解析一下文本中的语意。
+      elemnet_id.innerHTML = '<a href="baidu.com">百度</a>';
+      elemnet_class.innerText = '<a href="baidu.com">百度</a>';
+
+      elemnet_tag.style.color = "red";
+      elemnet_tag.style.fontSize = "20px";
+
+      // DOM 属性绑定事件
+      var button_element = document.getElementsByTagName("button")[0];
+      console.log(button_element);
+
+      // （一）  匿名函数
+      // button_element.onclick = function () {
+      //   alert("DOM 属性按键触发");
+      // };
+
+      // button_element.addEventListener("click", function () {
+      //   alert("通过addEventListener 触发按键");
+      // });
+
+      // （二）非匿名函数
+      button_element.addEventListener("click", click_event);
+
+      function click_event() {
+        alert("通过addEventListener 触发按键");
+      }
+    </script>
+  </body>
+</html>

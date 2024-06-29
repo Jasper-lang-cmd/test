@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>表格的增删改查</title>
+    <style>
+      table {
+        width: 100%;
+        /* 消除单元格与单元格之间的边框 : 边框合并*/
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid grey;
+        /* 居中 */
+        text-align: center;
+        padding: 5px;
+      }
+      th {
+        background-color: #ddd;
+      }
+      button {
+        margin-left: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!--
+        tr：tr 是 table row 的缩写，表示表格的一行。
+        td：td 是 table data 的缩写，表示表格的数据单元格。
+        th：th 是 table header的缩写，表示表格的表头单元格。
+     -->
+    <h1 style="text-align: center">表格的增删改查</h1>
+    <button onclick="addRow()">新增数据</button>
+    <table id="table">
+      <tr>
+        <th>姓名</th>
+        <th>联系方式</th>
+        <th>操作</th>
+      </tr>
+      <tr>
+        <td>李路路</td>
+        <td>17623093756</td>
+        <td>
+          <button onclick="editRow(this)">编辑</button
+          ><button onclick="deleteRow(this)">删除</button>
+        </td>
+      </tr>
+    </table>
+    <script src="./js/table.js"></script>
+  </body>
+</html>
