@@ -21,6 +21,46 @@
 
       let empty_value = null;
       console.log(empty_value);
+
+      let age = 18;
+      if (age > 18) {
+        console.log("你已经成年");
+      } else {
+        console.log("你还未成年");
+      }
+      // 条件语句
+      // let time = 19;
+      // if (time < 12) {
+      //   alert("上午好");
+      // } else if (time < 18) {
+      //   alert("下午好");
+      // } else {
+      //   alert("晚上好");
+      // }
+
+      // 循环语句
+      console.log("FOR 循环");
+      for (let i = 0; i < 10; i++) {
+        console.log(i);
+      }
+
+      console.log("while 循环");
+      let count = 1;
+      while (count <= 10) {
+        console.log(count);
+        count++;
+      }
+
+      console.log("循环关键字");
+      for (var i = 0; i < 7; i++) {
+        if (i == 2) {
+          continue;
+        }
+        if (i == 4) {
+          break;
+        }
+        console.log(i);
+      }
     </script>
   </body>
 </html>
