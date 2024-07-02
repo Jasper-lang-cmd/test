@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>移动端 rem 适配器</title>
+    <style>
+      /* html{
+            font-size: 20px;
+        } */
+
+      .box-px {
+        width: 300px;
+        height: 100px;
+        background-color: blueviolet;
+        margin-bottom: 50px;
+      }
+
+      .box-rem {
+        /* rem : 倍数 */
+        width: 5rem;
+        height: 3rem;
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box-px"></div>
+    <div class="box-rem"></div>
+    <script>
+      //根据设备宽度计算 HTML 标签的 font-size 的属性值。 设备宽度 / 10
+      function resetHTMLFontSize() {
+        //获取HTML的根节点
+        //将HTML根元素的font-size设置为屏幕宽度的十分之一（以像素为单位）。
+
+        document.documentElement.style.fontSize = screen.width / 10 + "px";
+      }
+
+      resetHTMLFontSize();
+
+      // 绑定事件
+      //这行代码将resetHTMLFontSize函数绑定到window对象的onresize事件上。
+      //当浏览器窗口的大小发生变化时（例如，用户手动调整窗口大小或设备旋转导致窗口大小变化），
+      //onresize事件会被触发，并执行与之绑定的resetHTMLFontSize函数。
+      //这样，HTML根元素的font-size就会根据新的屏幕宽度自动调整。
+
+      window.onresize = resetHTMLFontSize;
+    </script>
+  </body>
+</html>
