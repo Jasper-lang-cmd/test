@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>表单事件</title>
+  </head>
+  <body>
+    <input type="text" id="username" />
+    <input type="text" id="password" />
+    <script>
+      let username = document.getElementById("username");
+      //   input 事件的一个特点，连续触发，比如用户每按下一次按键，就会触发一次input事件。
+      username.oninput = function (e) {
+        console.log(e.target.value);
+      };
+      //   select 事件 : 选中文本时触发
+      username.onselect = function () {
+        console.log("选中");
+      };
+      //   Change 事件 : 当<input>、<select>、<textarea>的值发生变化时触发。
+      //   change 事件不会连续触发，只有全部修改完成时才会触发(即 失去焦点 或者 回车)。
+      let password = document.getElementById("password");
+      password.onchange = function (e) {
+        console.log(e.target.value);
+      };
+    </script>
+  </body>
+</html>

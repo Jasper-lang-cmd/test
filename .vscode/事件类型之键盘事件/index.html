@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>键盘事件</title>
+  </head>
+  <body>
+    <!-- 键盘事件主要有keydown、keypress、keyup 三个事件 -->
+    <!-- keydown : 按下键盘时触发 -->
+    <!-- keypress : 按下有值的键时触发，即按下Ctrl、Alt、Shift、Meta 这样无值的键，这个事件不会被触发。
+                    对于有值的键，按下时先触发 keydown 事件，再触发这个事件。      
+     -->
+    <!-- keyup : 松开键盘时触发该事件。 -->
+    <input type="text" id="username" />
+    <input type="text" id="password" />
+    <script>
+      let username = document.getElementById("username");
+      username.onkeydown = function (e) {
+        // target : 获取当前元素
+        console.log("按下了");
+      };
+      username.onkeyup = function (e) {
+        console.log(e.target.value);
+      };
+      //   数字和字母是有值的，其它的无值
+      username.onkeypress = function (e) {
+        console.log("keypress");
+      };
+      //   keyCode
+      //   keyCode 代表每个按键的唯一标识。
+      let password = document.getElementById("password");
+      password.onkeyup = function (e) {
+        console.log(e.keyCode);
+        // === 比较时，不会尝试转换操作数的类型。
+        if (e.keyCode === 13) {
+          console.log("开始搜索");
+        }
+      };
+    </script>
+  </body>
+</html>

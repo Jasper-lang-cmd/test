@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form</title>
+  </head>
+  <body>
+    <!-- 
+    
+        reset 事件 与 submit 事件
+        这两个事件发生在表单对象<form>上，而不是发生在表单的成员上。
+        reset 事件 : 当表单重置（所有表单成员变回默认值）时触发。
+        submit 事件 : 当表单数据向服务器提交时触发。
+        注意 : submit 事件的发生对象是 <form> 元素，而不是 <button> 元素，因为提交的是表不是按钮。
+
+    -->
+    <form action="" id="Myform" onsubmit="submitHandle">
+      <!-- action : 服务器地址 -->
+      <input type="text" name="username" />
+      <button id="resetBtn">重置</button>
+      <button>提交表单</button>
+    </form>
+    <script>
+      let resetBtn = document.getElementById("resetBtn");
+      let Myform = document.getElementById("Myform");
+      resetBtn.onclick = function () {
+        // 触发在表单上 : 清空表单
+        Myform.reset();
+      };
+      function submitHandle() {
+        console.log("想做的事情");
+      }
+    </script>
+  </body>
+</html>
