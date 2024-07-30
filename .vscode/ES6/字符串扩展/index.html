@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>字符串扩展</title>
+  </head>
+  <body>
+    <script>
+      //   控制台打印字符 'a' 'b' 'c'
+      console.log("\u0061 \u0062 \u0063");
+      //   字符串遍历接口 : for...of 遍历循环(不用考虑下标)
+      //   for (let i = 0; i < str.length; i++) {
+      //     console.log(str[i]);
+      //   }
+      let str = "World";
+      for (let i of str) {
+        console.log(i);
+      }
+
+      //   动态创建一个 a 标签 , a 标签的 href 属性也是动态的。
+      let href = "https://itbaizhan.com";
+      let text = "op";
+      //   当我向页面写入标签时，标签的数据一般来源于服务器。
+      let itbaizhan = "<a href='" + href + "'>" + text + "</a>";
+      console.log(itbaizhan);
+      //   字符串模板(用反引号 （`）标识)
+      let itbaizhan1 = `<a href="${href}">${text}</a>`;
+      console.log(itbaizhan1);
+    </script>
+  </body>
+</html>

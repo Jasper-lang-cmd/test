@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>对象解构赋值</title>
+  </head>
+  <body>
+    <script>
+      let user = {
+        name: "keli",
+        age: 12,
+      };
+      //   console.log(user.name);
+      //   console.log(user.age);
+
+      //   利用解构赋值方式简化（对象的属性没有次序，变量必须与属性同名）
+      let { name, age } = user;
+      console.log(name, age);
+      //   对象的解构赋值，可以很方便地将现有的方法，赋值到某个变量。
+      const { log } = console;
+      log("hello");
+      const { abs, ceil, floor, random } = Math;
+      log(random());
+    </script>
+  </body>
+</html>
