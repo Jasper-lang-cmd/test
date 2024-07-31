@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Set 数据结构</title>
+  </head>
+  <body>
+    <!-- 
+    
+      基本用法 :
+
+         ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。
+         Set 本身是一个构造函数，用来生成 Set 数据结构。
+
+    -->
+    <script>
+      let s = new Set();
+      let arr = [11, 22, 33, 44, 55];
+
+      //   通过 add() 方法向 Set 结构加入成员，结果表明 Set 结构不会添加重复的值。
+      arr.forEach((x) => s.add(x));
+      console.log(s);
+
+      //   Set 函数可以接收一个数组作为参数
+      const set = new Set([66, 77, 88]);
+      console.log(...set);
+
+      //   可用于数组去重
+      const arr01 = [12, 13, 12, 25, 26, 99, 33, 26, 99];
+      console.log([...new Set(arr01)]);
+
+      //   字符串去除重复字符
+      console.log([...new Set("ababbc")].join(""));
+
+      //   向 Set 加入值的时候，不会发生类型转换，所以 5 和 "5" 是两个不同的值。
+      var mySet = new Set();
+      mySet.add("5");
+      mySet.add(5);
+      console.log(mySet); // Set(2) {'5', 5}
+
+      //   size属性 : 返回 Set 实例的成员总数
+      const items = new Set([1, 2, 3, 4, 5, 5, 5, 5]);
+      console.log(items.size); // 5
+    </script>
+  </body>
+</html>

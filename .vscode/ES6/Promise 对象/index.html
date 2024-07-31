@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise 对象</title>
+  </head>
+
+  <body>
+    <!-- 
+    
+     基本概念 : 
+
+        Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。
+        由社区最早提出和实现，ES6 将其写进了语言标准，统一了用法，原生提供了 Promise 对象
+    
+        所谓 Promise ，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。
+        从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的API，
+        各种异步操作都可以用同样的方法进行处理。
+
+        有了 Promise 对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数。
+        此外， Promise 对象提供统一的接口，使得控制异步操作更加容易。
+
+    -->
+    <div id="box">等待加载</div>
+    <script>
+      var box = document.getElementById("box");
+      // ES6 规定， Promise 对象是一个构造函数，用来生成 Promise 实例
+      // Promise 构造函数接受一个函数作为参数，该函数的两个参数分别是resolve 和 reject 。
+      // 它们是两个函数，由 JavaScript 引擎提供，不用自己部署。
+      // Promise 实例生成以后，可以用 then 方法分别指定 resolved 状态和 rejected状态的回调函数。
+      //   const promise = new Promise(function (resolve, reject) {
+      //     // ... some code
+      //     if (x == 1) {
+      //       resolve(value);
+      //     } else {
+      //       reject(error);
+      //     }
+      //   });
+      // promise.then(function(value) {
+      // // success
+      // }, function(error) {
+      // // failure
+      // });
+
+      function loadImageAsync(url) {
+        const promise = new Promise(function (resolve, reject) {
+          // 异步处理 : 消耗时间的代码
+          const image = new Image(); //创建 Image 对象
+          image.src = url;
+          image.onload = function () {
+            resolve(image);
+          };
+          image.onerror = function () {
+            reject(new Error("Could not load image at" + url));
+          };
+        });
+        return promise;
+      }
+      const promise = loadImageAsync(
+        "https://ts1.cn.mm.bing.net/th/id/R-C.c57b8b63fd91345aca8b452052a896cb?rik=xwYkO9LfRHsTyg&riu=http%3a%2f%2fpic.zsucai.com%2ffiles%2f2013%2f0717%2fmhfj1.jpg&ehk=o2BjWsRBZg82tbJbXH9NwWJTOpAtVlyN9MwkMOubKvI%3d&risl=&pid=ImgRaw&r=0"
+      );
+      promise.then(
+        function (data) {
+          // 成功
+          box.appendChild(data);
+        },
+        function (error) {
+          // 失败
+          box.innerHTML = "图片加载失败";
+          console.log(error);
+        }
+      );
+    </script>
+  </body>
+</html>

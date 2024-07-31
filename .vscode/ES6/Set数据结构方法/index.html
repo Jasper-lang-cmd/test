@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Set 数据结构方法</title>
+  </head>
+  <body>
+    <!-- 
+       
+         add()  : set 添加方法
+         delete() : 删除某个值，返回一个布尔值，表示删除是否
+         has() : 返回一个布尔值，表示该值是否为 Set 的成员
+         clear() : 清除所有成员，没有返回值
+
+    
+    -->
+    <script>
+      //  add()
+      var mySet = new Set();
+      mySet.add("5");
+      console.log(mySet);
+
+      //  delete()
+      var mySet = new Set();
+      mySet.add("5");
+      var flag = mySet.delete("5");
+      console.log(flag); // true
+
+      //  has()
+      var mySet = new Set();
+      mySet.add("5");
+      var flag = mySet.has("5");
+      console.log(flag); // true
+
+      //  clear()
+      var mySet = new Set();
+      mySet.add("5");
+      mySet.clear();
+      console.log(mySet); // Set(0) {size: 0}
+    </script>
+  </body>
+</html>
