@@ -1,6 +1,10 @@
 import querystring from "querystring";
 import axios from "axios";
 
+// import querystring from "querystring";cd
+// 用于将对象序列化成查询字符串，这里主要用于将 POST 请求的数据转换为查询字符串格式
+// （尽管这在实际应用中不常见，因为 POST 请求通常使用 JSON 或表单数据格式）。
+
 // 参考文档 : https://www.kancloud.cn/yunye/axios/234845
 
 const errorHandle = (status, info) => {
@@ -45,7 +49,7 @@ instance.interceptors.request.use(
     return config;
   },
   (error) => {
-    return Primise.reject(error);
+    return Promise.reject(error);
   }
 );
 
