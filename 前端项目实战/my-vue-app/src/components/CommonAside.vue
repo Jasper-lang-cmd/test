@@ -1,7 +1,15 @@
 <template>
-  <el-aside width="180px">
-    <el-menu background-color="#545c64" text-color="#fff" :collapse="false">
-      <h3>通用后台管理系统</h3>
+  <!-- :collapse-transition="false"这样的语法通常用于动态地控制组件或元素的过渡效果（transition）是否启用。 -->
+  <el-aside :width="width">
+    <el-menu
+      background-color="#545c64"
+      text-color="#fff"
+      :collapse="isCollapse"
+      :collapse-transition="false"
+    >
+      <!-- v-show 指令根据其后表达式的真假值来决定是否渲染元素，但不移除DOM元素，只是简单地切换元素的CSS属性display。 -->
+      <h3 v-show="!isCollapse">通用后台管理系统</h3>
+      <h3 v-show="isCollapse">后台</h3>
       <el-menu-item
         v-for="item in noChildren"
         :index="item.path"
@@ -34,8 +42,8 @@
   </el-aside>
 </template>
 <script setup>
-import { collapseContextKey } from "element-plus";
 import { ref, computed } from "vue";
+import { useAllDataStore } from "@/stores";
 
 // 这个list数组可以用于构建动态的侧边栏菜单或者导航菜单。
 // 每个菜单项都有一些基本的属性，如path（路由路径）、name（名称，可能用于Vue Router的命名路由）、
@@ -93,6 +101,12 @@ const list = ref([
 // 来确保只有当children属性存在且非空时，该菜单项才被视为有子菜单项。
 const noChildren = computed(() => list.value.filter((item) => !item.children));
 const hasChildren = computed(() => list.value.filter((item) => item.children));
+
+const store = useAllDataStore();
+const isCollapse = computed(() => store.state.isCollapse);
+
+// 定义width
+const width = computed(() => (store.state.isCollapse ? "64px" : "180px"));
 </script>
 <style scoped lang="less">
 .icons {

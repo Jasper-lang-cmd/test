@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="left-content">
-      <el-button size="small">
+      <el-button size="small" @click="handleCollapse">
         <component class="icons" is="menu"></component>
       </el-button>
 
@@ -27,12 +27,20 @@
 </template>
 <script setup>
 import { ref, computed } from "vue";
-
+import { useAllDataStore } from "@/stores";
 // URL() : 构造函数返回一个新创建的 URL 对象，该对象表示由参数定义的 URL。
 // new URL(url)  或者  new URL(url, base)
 
 const getImageUrl = (user) => {
-  return new URL(`../assets/images/${user}.png`, import.meta.url).href;
+  return new URL(`../assets/images/${3}.jpg`, import.meta.url).href;
+};
+
+const store = useAllDataStore();
+
+// 定义 handleCollapse 方法
+const handleCollapse = () => {
+  // 点击时取反，即折叠（isCollapse : true）
+  store.state.isCollapse = !store.state.isCollapse;
 };
 </script>
 <style lang="less" scoped>

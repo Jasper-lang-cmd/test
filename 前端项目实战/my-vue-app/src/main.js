@@ -10,12 +10,17 @@ import * as ElementPlusIconsVue from "@element-plus/icons-vue";
 // 引入 pinia : Pinia是专为Vue应用程序开发的状态管理库，它支持Vue 2和Vue 3，并允许跨组件或页面共享状态。
 // Pinia作为Vuex的一种轻量级替代方案，旨在提供一个更加简单、直观且类型安全的方式来管理Vue.js应用的状态。
 import { createPinia } from "pinia";
+// 引入 mock.js
+import "@/api/mock.js";
+
+import api from "@/api/api";
 
 const pinia = createPinia();
 
 const app = createApp(App);
 app.use(router).use(ElementPlus).use(pinia);
 app.mount("#app");
+app.config.globalProperties.$api = api;
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
 }

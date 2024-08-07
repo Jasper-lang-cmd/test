@@ -1,4 +1,5 @@
 <script setup>
+import { routeLocationKey } from "vue-router";
 import CommonAside from "../components/CommonAside.vue";
 import CommonHeader from "../components/CommonHeader.vue";
 </script>
@@ -13,7 +14,9 @@ import CommonHeader from "../components/CommonHeader.vue";
         <el-header class="el-header">
           <CommonHeader />
         </el-header>
-        <el-main class="right-main"> main </el-main>
+        <el-main class="right-main">
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>

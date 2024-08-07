@@ -6,6 +6,16 @@ const routes = [
     path: "/",
     name: "main",
     component: () => import("@/views/Main.vue"),
+    // 重定位
+    redirect: "/home",
+    // 子路由
+    children: [
+      {
+        path: "home",
+        name: "home",
+        component: () => import("@/views/Home.vue"),
+      },
+    ],
   },
 ];
 
