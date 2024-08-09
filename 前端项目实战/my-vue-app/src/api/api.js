@@ -29,4 +29,25 @@ export default {
       // mock: true,
     });
   },
+  getUserData(data) {
+    return request({
+      url: "/home/getUserData",
+      method: "get",
+      data,
+    });
+  },
+  deleteUser(data) {
+    return request({
+      url: "/user/deleteUser",
+      method: "get",
+      data,
+    });
+  },
+  addUser(data) {
+    return request({
+      url: "/user/addUser",
+      method: "post",
+      data,
+    });
+  },
 };
