@@ -17,6 +17,7 @@
       </el-form-item>
     </el-form>
   </div>
+
   <div class="table">
     <el-table :data="tableData" style="width: 100%">
       <el-table-column
@@ -28,7 +29,12 @@
       />
       <el-table-column fixed="right" label="Operations" min-width="120">
         <template #="scope">
-          <el-button type="primary" size="small" @click="handleClick">
+          <!-- 
+              @click="handleEdit(scope.row)"：这是一个事件监听器，当按钮被点击时，会调用handleEdit方法，
+            并将当前行的数据（scope.row）作为参数传递。scope.row通常是在使用Element UI的表格组件（如<el-table>）时，
+            通过作用域插槽（scoped slot）或show-overflow-tooltip属性等方式访问到的当前行数据。     
+          -->
+          <el-button type="primary" size="small" @click="handleEdit(scope.row)">
             编辑
           </el-button>
           <el-button type="danger" size="small" @click="handleDelete(scope.row)"
@@ -106,11 +112,8 @@
 </template>
 
 <script setup>
-import { ref, getCurrentInstance, onMounted, reactive } from "vue";
+import { ref, getCurrentInstance, onMounted, reactive, nextTick } from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
-const handleClick = () => {
-  console.log("click");
-};
 
 const tableData = ref([]);
 // proxy（组件的代理对象，用于访问组件的响应式状态和方法）
@@ -120,7 +123,7 @@ const getUserData = async () => {
   console.log(data);
   tableData.value = data.list.map((item) => ({
     ...item,
-    sexLabel: item.sex === 1 ? "男" : "女",
+    sexLabel: item.sex === "1" ? "男" : "女",
   }));
   config.total = data.count;
 };
@@ -233,6 +236,8 @@ const onSubmit = () => {
       if (action.value === "add") {
         console.log(formUser);
         res = await proxy.$api.addUser(formUser);
+      } else {
+        res = await proxy.$api.editUser(formUser);
       }
       if (res) {
         dialogVisible.value = false;
@@ -246,6 +251,16 @@ const onSubmit = () => {
         type: "error",
       });
     }
+  });
+};
+// 编辑
+const handleEdit = (val) => {
+  action.value = "edit";
+  dialogVisible.value = true;
+  // 使用 nextTick 来确保在DOM更新之后执行代码。这是因为在Vue中，当你修改数据后，Vue会异步地更新DOM。
+  // nextTick 允许你在DOM更新完成后立即执行代码。(在DOM更新后填充表单数据)
+  nextTick(() => {
+    Object.assign(formUser, { ...val, sex: "" + val.sex });
   });
 };
 onMounted(() => {

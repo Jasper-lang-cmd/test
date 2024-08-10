@@ -6,6 +6,7 @@
       text-color="#fff"
       :collapse="isCollapse"
       :collapse-transition="false"
+      :default-active="activeMenu"
     >
       <!-- v-show 指令根据其后表达式的真假值来决定是否渲染元素，但不移除DOM元素，只是简单地切换元素的CSS属性display。 -->
       <h3 v-show="!isCollapse">通用后台管理系统</h3>
@@ -14,6 +15,7 @@
         v-for="item in noChildren"
         :index="item.path"
         :key="item.path"
+        @click="handleMenu(item)"
       >
         <component class="icons" :is="item.icon"></component>
         <span>{{ item.label }}</span>
@@ -32,6 +34,7 @@
             v-for="(subItem, subIndex) in item.children"
             :index="subItem.path"
             :key="subItem.path"
+            @click="handleMenu(subItem)"
           >
             <component class="icons" :is="subItem.icon"></component>
             <span>{{ subItem.label }}</span>
@@ -44,7 +47,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useAllDataStore } from "@/stores";
-
+import { useRoute, useRouter } from "vue-router";
 // 这个list数组可以用于构建动态的侧边栏菜单或者导航菜单。
 // 每个菜单项都有一些基本的属性，如path（路由路径）、name（名称，可能用于Vue Router的命名路由）、
 // label（显示名称）、icon（图标名称，可能用于显示图标）和url（可能用于链接到特定的Vue组件或页面）。
@@ -107,6 +110,16 @@ const isCollapse = computed(() => store.state.isCollapse);
 
 // 定义width
 const width = computed(() => (store.state.isCollapse ? "64px" : "180px"));
+// useRouter 函数返回的是路由的实例对象，通过这个对象，你可以编程式地导航到不同的 URL，
+// 例如使用 router.push 或 router.replace 方法。
+// 这与 useRoute 不同，后者返回的是当前路由的信息对象，包含如路径、查询参数、哈希值等，但它不提供修改路由状态的方法。
+const router = useRouter();
+const route = useRoute();
+const activeMenu = computed(() => route.path);
+const handleMenu = (item) => {
+  router.push(item.path);
+  store.selectMenu(item);
+};
 </script>
 <style scoped lang="less">
 .icons {
