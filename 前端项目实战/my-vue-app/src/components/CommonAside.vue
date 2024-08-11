@@ -51,50 +51,50 @@ import { useRoute, useRouter } from "vue-router";
 // 这个list数组可以用于构建动态的侧边栏菜单或者导航菜单。
 // 每个菜单项都有一些基本的属性，如path（路由路径）、name（名称，可能用于Vue Router的命名路由）、
 // label（显示名称）、icon（图标名称，可能用于显示图标）和url（可能用于链接到特定的Vue组件或页面）。
-const list = ref([
-  {
-    path: "/home",
-    name: "home",
-    label: "首页",
-    icon: "house",
-    url: "Home",
-  },
-  {
-    path: "/mall",
-    name: "mall",
-    label: "商品管理",
-    icon: "video-play",
-    url: "Mall",
-  },
-  {
-    path: "/user",
-    name: "user",
-    label: "用户管理",
-    icon: "user",
-    url: "User",
-  },
-  {
-    path: "other",
-    label: "其他",
-    icon: "location",
-    children: [
-      {
-        path: "/page1",
-        name: "page1",
-        label: "页面1",
-        icon: "setting",
-        url: "Page1",
-      },
-      {
-        path: "/page2",
-        name: "page2",
-        label: "页面2",
-        icon: "setting",
-        url: "Page2",
-      },
-    ],
-  },
-]);
+// const list = ref([
+//   {
+//     path: "/home",
+//     name: "home",
+//     label: "首页",
+//     icon: "house",
+//     url: "Home",
+//   },
+//   {
+//     path: "/mall",
+//     name: "mall",
+//     label: "商品管理",
+//     icon: "video-play",
+//     url: "Mall",
+//   },
+//   {
+//     path: "/user",
+//     name: "user",
+//     label: "用户管理",
+//     icon: "user",
+//     url: "User",
+//   },
+//   {
+//     path: "other",
+//     label: "其他",
+//     icon: "location",
+//     children: [
+//       {
+//         path: "/page1",
+//         name: "page1",
+//         label: "页面1",
+//         icon: "setting",
+//         url: "Page1",
+//       },
+//       {
+//         path: "/page2",
+//         name: "page2",
+//         label: "页面2",
+//         icon: "setting",
+//         url: "Page2",
+//       },
+//     ],
+//   },
+// ]);
 
 // computed属性noChildren和hasChildren分别用于筛选出没有子菜单项和有子菜单项的菜单项。
 
@@ -116,6 +116,9 @@ const width = computed(() => (store.state.isCollapse ? "64px" : "180px"));
 const router = useRouter();
 const route = useRoute();
 const activeMenu = computed(() => route.path);
+
+const list = computed(() => store.state.menuList);
+
 const handleMenu = (item) => {
   router.push(item.path);
   store.selectMenu(item);

@@ -186,7 +186,7 @@ const getTableData = async () => {
 };
 const getCountData = async () => {
   const data = await proxy.$api.getCountData();
-  console.log(data);
+  // console.log(data);
   countData.value = data;
 };
 const getChartData = async () => {
