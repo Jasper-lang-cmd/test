@@ -4,9 +4,12 @@
       <el-button size="small" @click="handleCollapse">
         <component class="icons" is="menu"></component>
       </el-button>
-
+      <!-- 编程面包屑（Breadcrumb）是一个导航辅助功能，用于显示用户当前所在页面在网站或应用程序结构中的位置路径。 -->
       <el-breadcrumb separator="/" class="bread">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item v-if="current" :to="current.path">{{
+          current.label
+        }}</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div class="right-content">
@@ -18,7 +21,7 @@
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item>个人中心</el-dropdown-item>
-            <el-dropdown-item>退出</el-dropdown-item>
+            <el-dropdown-item @click="handleLogout">退出</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -28,6 +31,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useAllDataStore } from "@/stores";
+import { useRouter } from "vue-router";
 // URL() : 构造函数返回一个新创建的 URL 对象，该对象表示由参数定义的 URL。
 // new URL(url)  或者  new URL(url, base)
 
@@ -42,6 +46,14 @@ const handleCollapse = () => {
   // 点击时取反，即折叠（isCollapse : true）
   store.state.isCollapse = !store.state.isCollapse;
 };
+// 定义 “Logout” -> 退出 方法(用户登出时执行)
+const router = useRouter();
+const handleLogout = () => {
+  store.clean();
+  router.push("/login");
+};
+
+const current = computed(() => store.state.currentMenu);
 </script>
 <style lang="less" scoped>
 .header {

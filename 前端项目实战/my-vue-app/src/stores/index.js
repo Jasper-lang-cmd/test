@@ -50,6 +50,7 @@ export const useAllDataStore = defineStore("AllData", () => {
     if (val.name === "home") {
       state.value.currentMenu = null;
     } else {
+      state.value.currentMenu = val;
       let index = state.value.tags.findIndex((item) => item.name === val.name);
       index === -1 ? state.value.tags.push(val) : "";
     }
@@ -96,7 +97,7 @@ export const useAllDataStore = defineStore("AllData", () => {
     // 解决多账号路由问题
     let routes = router.getRoutes();
     routes.forEach((item) => {
-      if (item.name == "main" || item.name == "login") {
+      if (item.name == "main" || item.name == "login" || item.name == "404") {
         return;
       } else {
         router.removeRoute(item.name);
@@ -106,11 +107,22 @@ export const useAllDataStore = defineStore("AllData", () => {
       state.value.routerList.push(router.addRoute("main", item));
     });
   }
+  // 清理应用程序的状态和缓存
+  function clean() {
+    state.value.routerList.forEach((item) => {
+      console.log(item);
+      if (item) item();
+    });
+    state.value = initState();
+    // 删除我们的本地缓存
+    localStorage.removeItem("store");
+  }
   return {
     state,
     selectMenu,
     updateTags,
     updateMenuList,
     addMenu,
+    clean,
   };
 });
